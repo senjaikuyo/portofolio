@@ -193,15 +193,30 @@
       </div>
 
       <div class="about-content">
-        <div class="about-image-wrapper section-reveal glow-border">
+        <!-- Kolom Kiri - Foto Profil -->
+        <div class="about-image-wrapper fade-up-stagger" style="animation-delay: 0.2s;">
+          <div class="hero-radial-glow" style="opacity: 0.5;"></div>
           <div class="about-image">
+            <div class="rotating-border-alt"></div>
             <img src="assets/about.webp" alt="Profile" />
+          </div>
+          <!-- Floating Badges -->
+          <div class="floating-badge-about top-right">
+            <span>💻 2+ Tahun Coding</span>
+          </div>
+          <div class="floating-badge-about bottom-left">
+            <span class="pulse-dot"></span>
+            <span>Open to Work</span>
           </div>
         </div>
 
-        <div class="about-text section-reveal">
-          <p class="bio-short"
-            style="margin-bottom: 32px; font-size: 16px; line-height: 1.6; color: var(--text-primary);">
+        <div class="about-text">
+          <span class="about-label fade-up-stagger" style="animation-delay: 0s;">&lt;about_me /&gt;</span>
+          <h2 class="section-title fade-up-stagger"
+            style="animation-delay: 0.1s; text-align: left; margin-bottom: 24px; font-size: 36px;">Kenalan Yuk! 👋</h2>
+
+          <p class="bio-short fade-up-stagger"
+            style="animation-delay: 0.2s; color: #94A3B8; font-size: 16px; line-height: 1.8; margin-bottom: 40px;">
             Saya adalah mahasiswa Teknik Informatika di Polibatam yang memiliki passion besar dalam pengembangan web.
             Dengan pengalaman lebih dari 2 tahun belajar dan membangun proyek nyata, saya selalu berusaha menciptakan
             solusi digital yang bermanfaat dan user-friendly. Saya percaya bahwa teknologi terbaik adalah yang
@@ -212,46 +227,49 @@
           <div class="about-info-grid">
 
             <!-- Card 1: Identitas -->
-            <div class="info-card fade-up-stagger">
+            <div class="info-card fade-up-stagger" style="animation-delay: 0.3s;">
               <div class="info-card-header">
                 <div class="title-with-icon">
-                  <span class="info-icon">👤</span>
-                  <span class="info-title">Siapa Saya?</span>
+                  <span class="info-icon">🪪</span>
+                  <span class="info-title">Identitas Saya</span>
                 </div>
-                <span class="badge-outline blue">[ Mahasiswa ]</span>
+                <span class="badge-outline blue">Profil</span>
               </div>
               <div class="info-card-body">
-                <div class="info-row-item"><span class="label">Nama Lengkap</span> <span class="val">Mohamad
-                    Senja</span></div>
+                <div class="info-row-item"><span class="label">Nama</span> <span class="val">Mohamad Senja</span></div>
                 <div class="info-row-item"><span class="label">Panggilan</span> <span class="val">Senja</span></div>
-                <div class="info-row-item"><span class="label">Tanggal Lahir</span> <span class="val">26 Februari
-                    2005</span></div>
-                <div class="info-row-item"><span class="label">Asal Kota</span> <span class="val">Batam, Kepri
+                <div class="info-row-item"><span class="label">Umur</span> <span class="val">21 Tahun</span></div>
+                <div class="info-row-item"><span class="label">Domisili</span> <span class="val">Batam, Kepri
                     🇮🇩</span></div>
-                <div class="info-row-item"><span class="label">Status</span> <span class="val">Aktif</span></div>
+                <div class="info-row-item"><span class="label">Status</span> <span class="val">Mahasiswa Aktif</span>
+                </div>
+                <div class="info-row-item"><span class="label">Bahasa</span> <span class="val">Indonesia, EN
+                    (Basic)</span></div>
               </div>
-              <div class="info-card-footer blue-line"></div>
             </div>
 
             <!-- Card 2: Pendidikan -->
-            <div class="info-card fade-up-stagger" style="animation-delay: 0.15s;">
+            <div class="info-card fade-up-stagger" style="animation-delay: 0.45s;">
               <div class="info-card-header">
                 <div class="title-with-icon">
                   <span class="info-icon">🎓</span>
                   <span class="info-title">Pendidikan</span>
                 </div>
-                <span class="badge-outline green">[ Aktif ]</span>
+                <div class="badge-with-dot green">
+                  <span class="pulse-dot-small"></span>
+                  <span class="badge-outline-text">Aktif</span>
+                </div>
               </div>
               <div class="info-card-body">
                 <div class="info-row-item"><span class="label">Institusi</span> <span class="val">Politeknik Negeri
                     Batam</span></div>
                 <div class="info-row-item"><span class="label">Jurusan</span> <span class="val">Teknik
                     Informatika</span></div>
-                <div class="info-row-item"><span class="label">Jenjang</span> <span class="val">D4 / S1 Terapan</span>
-                </div>
+                <div class="info-row-item"><span class="label">Jenjang</span> <span class="val">D4 / Sarjana
+                    Terapan</span></div>
                 <div class="info-row-item"><span class="label">Angkatan</span> <span class="val">2023</span></div>
                 <div class="info-row-item"><span class="label">Semester</span> <span class="val">4</span></div>
-                <div class="info-row-item"><span class="label">IPK</span> <span class="val">3.90 ✨</span></div>
+                <div class="info-row-item"><span class="label">IPK</span> <span class="val">3.90</span></div>
               </div>
               <div class="info-card-footer">
                 <a href="https://polibatam.ac.id" target="_blank" class="small-link">🌐 polibatam.ac.id →</a>
@@ -259,56 +277,42 @@
             </div>
 
             <!-- Card 3: Kepribadian -->
-            <div class="info-card fade-up-stagger" style="animation-delay: 0.3s;">
+            <div class="info-card fade-up-stagger" style="animation-delay: 0.6s;">
               <div class="info-card-header">
                 <div class="title-with-icon">
                   <span class="info-icon">✨</span>
-                  <span class="info-title">Kepribadian</span>
+                  <span class="info-title">Karakter & Hobi</span>
                 </div>
-                <span class="badge-outline purple">[ INTJ ]</span>
+                <span class="badge-outline purple">INTJ</span>
               </div>
               <div class="info-card-body">
-                <div class="info-row-item"><span class="label">Hobi</span> <span class="val">Coding, Membaca 🎵</span>
+                <div class="info-row-item"><span class="label">Hobi</span> <span class="val">Coding, Musik, Membaca 🎵</span></div>
+                <div class="info-row-item"><span class="label">Passion</span> <span class="val">Bangun produk digital</span></div>
+                <div class="info-row-item"><span class="label">Sifat</span> <span class="val">Detail-oriented, Curious</span></div>
+                <div class="info-row-item"><span class="label">Mood</span> <span class="val emoji-tray-small">💻 ☕ 🎧</span></div>
+                <div class="info-row-item" style="border-bottom:none; flex-direction:column; align-items:flex-end;">
+                  <span class="val italic muted-quote" style="margin-top: 6px;">"Code is like poetry — it should be elegant."</span>
                 </div>
-                <div class="info-row-item"><span class="label">Passion</span> <span class="val">Produk digital</span>
-                </div>
-                <div class="info-row-item"><span class="label">Sifat</span> <span class="val">Detail-oriented</span>
-                </div>
-                <div class="info-row-item"><span class="label">Bahasa</span> <span class="val">ID 🇮🇩, EN
-                    (Basic)</span></div>
-                <div class="info-row-item"><span class="label">Quotes</span> <span class="val italic"
-                    style="font-size: 11px;">"Code is like poetry — it should be elegant."</span></div>
               </div>
-              <div class="info-card-footer">
-                <span class="emoji-tray">💻 ☕ 🎧</span>
+              <div class="info-card-footer bouncy-emojis">
+                <span>💻</span><span>☕</span><span>🎧</span>
               </div>
             </div>
 
             <!-- Card 4: Skills -->
-            <div class="info-card fade-up-stagger" style="animation-delay: 0.45s;">
+            <div class="info-card fade-up-stagger" style="animation-delay: 0.75s;">
               <div class="info-card-header">
                 <div class="title-with-icon">
                   <span class="info-icon">⚡</span>
-                  <span class="info-title">Dikuasai</span>
+                  <span class="info-title">Tech Dikuasai</span>
                 </div>
-                <span class="badge-outline cyan">[ Full Stack ]</span>
+                <span class="badge-outline purple">Full Stack</span>
               </div>
               <div class="info-card-body">
-                <div class="skill-row"><span class="label">Backend</span>
-                  <div class="pills"><span class="pill">PHP</span><span class="pill">Laravel</span><span
-                      class="pill">Python</span></div>
-                </div>
-                <div class="skill-row"><span class="label">Database</span>
-                  <div class="pills"><span class="pill">MySQL</span><span class="pill">PostgreSQL</span></div>
-                </div>
-                <div class="skill-row"><span class="label">Frontend</span>
-                  <div class="pills"><span class="pill">HTML</span><span class="pill">CSS</span><span
-                      class="pill">Bootstrap</span></div>
-                </div>
-                <div class="skill-row"><span class="label">Tools</span>
-                  <div class="pills"><span class="pill">Git</span><span class="pill">Postman</span><span
-                      class="pill">VSCode</span></div>
-                </div>
+                <div class="skill-row"><span class="label">Backend</span> <div class="pills"><span class="pill bounce-hover">PHP</span><span class="pill bounce-hover">Laravel</span><span class="pill bounce-hover">Python</span></div></div>
+                <div class="skill-row"><span class="label">Database</span> <div class="pills"><span class="pill bounce-hover">MySQL</span><span class="pill bounce-hover">PostgreSQL</span></div></div>
+                <div class="skill-row"><span class="label">Frontend</span> <div class="pills"><span class="pill bounce-hover">HTML</span><span class="pill bounce-hover">CSS</span><span class="pill bounce-hover">Bootstrap</span><span class="pill bounce-hover">JS</span></div></div>
+                <div class="skill-row"><span class="label">Tools</span> <div class="pills"><span class="pill bounce-hover">Git</span><span class="pill bounce-hover">GitHub</span><span class="pill bounce-hover">XAMPP</span><span class="pill bounce-hover">Postman</span><span class="pill bounce-hover">VS Code</span></div></div>
               </div>
               <div class="info-card-footer">
                 <span class="small-text italic">Selalu belajar hal baru 🚀</span>
@@ -318,31 +322,27 @@
           </div>
 
           <!-- Animated Stats Bar -->
-          <div class="about-stats-banner fade-up-stagger" id="statsBanner" style="animation-delay: 0.6s;">
+          <div class="about-stats-banner fade-up-stagger" id="statsBanner" style="animation-delay: 0.9s;">
             <div class="stat-col">
-              <div class="stat-number"><span class="count-up stat-target" data-target="10">0</span><span
-                  class="stat-plus">+</span></div>
+              <div class="stat-number"><span class="count-up stat-target" data-target="10">0</span><span class="stat-plus">+</span></div>
               <div class="stat-label">Proyek Diselesaikan</div>
             </div>
+            <div class="stat-col line"></div>
             <div class="stat-col">
-              <div class="stat-number"><span class="count-up stat-target" data-target="4">0</span><span
-                  class="stat-plus">+</span></div>
+              <div class="stat-number"><span class="count-up stat-target" data-target="4">0</span><span class="stat-plus">+</span></div>
               <div class="stat-label">Tech Stack Dikuasai</div>
             </div>
+            <div class="stat-col line"></div>
             <div class="stat-col">
-              <div class="stat-number"><span class="count-up stat-target" data-target="2">0</span><span
-                  class="stat-plus">+</span></div>
-              <div class="stat-label">Thn Pengalaman</div>
+              <div class="stat-number"><span class="count-up stat-target" data-target="2">0</span><span class="stat-plus">+</span></div>
+              <div class="stat-label">Tahun Pengalaman</div>
             </div>
           </div>
 
           <!-- Action Buttons -->
-          <div class="about-actions fade-up-stagger"
-            style="margin-top: 32px; display: flex; gap: 16px; animation-delay: 0.7s;">
-            <a href="assets/cv.pdf" download class="btn btn-outline"
-              style="border: 1px solid var(--accent-blue); background: transparent; color: white;">📄 Download CV</a>
-            <a href="#contact" class="btn btn-primary magnetic-btn" style="box-shadow: 0 0 15px rgba(0,120,255,0.4);">💬
-              Hubungi Saya →</a>
+          <div class="about-actions fade-up-stagger" style="animation-delay: 1.05s; display: flex; justify-content: center; gap: 16px; margin-top: 32px;">
+            <a href="assets/cv.pdf" download class="btn btn-outline cv-btn">📄 Download CV</a>
+            <a href="#contact" class="btn btn-primary shimmer-btn">💬 Hubungi Saya →</a>
           </div>
 
         </div>
