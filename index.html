@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Portfolio Developer Full Stack — PHP, Python, JavaScript. Siap berkolaborasi untuk proyek web modern." />
+  <title>SK | Full Stack Developer Portfolio</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="shared.css" />
+</head>
+
+<body>
+
+  <!-- ====== PROJECT MODAL (HIDDEN BY DEFAULT) ====== -->
+  <div class="project-modal" id="projectModal">
+    <div class="modal-overlay" onclick="closeModal()"></div>
+    <div class="modal-container">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+
+      <!-- Modal Header: Image thumbnail overlay -->
+      <div class="modal-header">
+        <img id="modalThumbnail" src="" alt="Project Thumbnail" />
+        <div class="modal-header-overlay">
+          <div class="modal-badge"><span class="pulse-dot"></span> <span id="modalBadgeStatus">Live Project</span></div>
+          <h2 class="modal-title" id="modalTitle">Project Title</h2>
+        </div>
+      </div>
+
+      <!-- Modal Body: 2 Columns -->
+      <div class="modal-body">
+        <div class="modal-col-left">
+          <h3>Deskripsi Lengkap</h3>
+          <p id="modalDesc">Deskripsi panjang di sini...</p>
+
+          <h3>Fitur Unggulan</h3>
+          <ul class="modal-features" id="modalFeatures">
+            <!-- Injected by JS -->
+          </ul>
+        </div>
+
+        <div class="modal-col-right">
+          <h3>Tech Stack</h3>
+          <div class="modal-tech-stack" id="modalTechStack">
+            <!-- Injected by JS -->
+          </div>
+
+          <div class="modal-info-card">
+            <div class="info-row"><span>📅 Tahun:</span> <span id="modalYear">2024</span></div>
+            <div class="info-row"><span>👥 Tim:</span> <span id="modalTeam">3 orang</span></div>
+            <div class="info-row"><span>⏱️ Durasi:</span> <span id="modalDuration">3 bulan</span></div>
+            <div class="info-row"><span>🎓 Jenis:</span> <span id="modalType">Tugas Akhir</span></div>
+          </div>
+
+          <div class="modal-actions">
+            <a href="#" class="btn btn-secondary full-btn">GitHub →</a>
+            <a href="#" class="btn btn-primary full-btn">Live Demo →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Custom Cursor -->
+  <div class="cursor-outer" id="cursorOuter"></div>
+  <div class="cursor-inner" id="cursorInner"></div>
+
+  <!-- ====== PRELOADER ====== -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-half preloader-half--top"></div>
+    <div class="preloader-half preloader-half--bottom"></div>
+    <div class="preloader-logo" id="preloaderLogo">
+      <span class="letter">S</span>
+      <span class="letter">K</span>
+    </div>
+    <div class="preloader-bar-container">
+      <div class="preloader-bar" id="preloaderBar"></div>
+    </div>
+  </div>
+
+  <!-- ====== NAVBAR ====== -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#" class="nav-logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>SenJai</span>
+      </a>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#hero" class="nav-link active" data-section="hero">Home</a></li>
+        <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+        <li><a href="#skills" class="nav-link" data-section="skills">Skills</a></li>
+        <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
+        <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#hero" class="nav-link" data-section="hero">Home</a>
+    <a href="#about" class="nav-link" data-section="about">About</a>
+    <a href="#skills" class="nav-link" data-section="skills">Skills</a>
+    <a href="#projects" class="nav-link" data-section="projects">Projects</a>
+    <a href="#contact" class="nav-link" data-section="contact">Contact</a>
+  </div>
+
+  <!-- ====== HERO SECTION ====== -->
+  <section class="hero" id="hero">
+    <div class="css-particles">
+      <!-- 20 light-weight CSS particles -->
+      <div class="css-particle"></div>
+      <div class="css-particle"></div>
+      <div class="css-particle"></div>
+      <div class="css-particle"></div>
+      <div class="css-particle"></div>
+      <div class="css-particle"></div>
+      <div class="css-particle"></div>
+      <div class="css-particle"></div>
+      <div class="css-particle"></div>
+      <div class="css-particle"></div>
+      <div class="css-particle"></div>
+      <div class="css-particle"></div>
+      <div class="css-particle"></div>
+      <div class="css-particle"></div>
+      <div class="css-particle"></div>
+      <div class="css-particle"></div>
+      <div class="css-particle"></div>
+      <div class="css-particle"></div>
+      <div class="css-particle"></div>
+      <div class="css-particle"></div>
+    </div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="dot"></span>
+          Available for Work
+        </div>
+        <p class="hero-greeting">Halo, saya 👋</p>
+        <h1 class="hero-name">SenJai Kuyo</h1>
+        <div class="hero-typewriter">
+          <span id="typewriterText"></span><span class="cursor-blink"></span>
+        </div>
+        <p class="hero-description">
+          Seorang developer yang bersemangat membangun solusi web modern dan efisien.
+          Berfokus pada PHP, Python, dan teknologi web terkini untuk menciptakan pengalaman digital yang luar biasa.
+        </p>
+        <div class="hero-buttons">
+          <a href="#projects" class="btn btn-primary magnetic-btn">Lihat Projects →</a>
+          <a href="assets/cv.pdf" download="SenJai_Kuyo_CV.pdf" class="btn btn-secondary magnetic-btn">Download CV ↓</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-radial-glow"></div>
+        <div class="hero-avatar-wrapper">
+          <div class="rotating-border"></div>
+          <img src="assets/avatar.webp" alt="SenJai Kuyo" class="hero-avatar" id="heroAvatar" />
+          <div class="floating-badges">
+            <span class="floating-badge">PHP</span>
+            <span class="floating-badge">Python</span>
+            <span class="floating-badge">MySQL</span>
+            <span class="floating-badge">JavaScript</span>
+            <span class="floating-badge">Laravel</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== ABOUT SECTION ====== -->
+  <section class="about section-reveal" id="about">
+    <div class="container">
+      <div class="about-image-wrapper">
+        <div class="about-image">
+          <img src="assets/about.webp" alt="About Me" id="aboutImage" />
+        </div>
+        <div class="about-floating-card">
+          <span class="icon">⭐</span>
+          <span>2+ Years Coding</span>
+        </div>
+      </div>
+      <div class="about-content">
+        <span class="about-label">// TENTANG SAYA</span>
+        <h2 class="about-heading">Siapa Saya?</h2>
+        <p class="about-text">
+          Saya adalah mahasiswa Teknik Informatika di Polibatam yang memiliki passion besar
+          dalam pengembangan web. Dengan pengalaman lebih dari 2 tahun belajar dan membangun
+          proyek, saya selalu berusaha menciptakan solusi digital yang bermanfaat dan
+          user-friendly. Saya percaya bahwa teknologi terbaik adalah yang mempermudah kehidupan manusia.
+        </p>
+        <div class="about-stats">
+          <div class="stat-card">
+            <div class="stat-number" data-target="10">0</div>
+            <div class="stat-label">Projects Selesai</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" data-target="3">0</div>
+            <div class="stat-label">Tech Stack</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" data-target="2">0</div>
+            <div class="stat-label">Tahun Belajar</div>
+          </div>
+        </div>
+        <a href="about.html" class="btn btn-primary magnetic-btn">Selengkapnya →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== SKILLS SECTION ====== -->
+  <section class="skills section-reveal" id="skills">
+    <span class="skills-bg-text">&lt;developer/&gt;</span>
+    <span class="skills-bg-text">{ skills }</span>
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">// KEAHLIAN</span>
+        <h2 class="section-title">Skills & Tech Stack</h2>
+        <p class="section-subtitle">Teknologi dan tools yang saya gunakan untuk membangun proyek-proyek terbaik.</p>
+      </div>
+      <div class="skills-grid">
+        <!-- Hard Skills -->
+        <div class="skill-bars">
+          <div class="skill-bar-item">
+            <div class="skill-bar-header">
+              <span>PHP</span>
+              <span>85%</span>
+            </div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" data-width="85"></div>
+            </div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-header">
+              <span>Python</span>
+              <span>75%</span>
+            </div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" data-width="75"></div>
+            </div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-header">
+              <span>JavaScript</span>
+              <span>70%</span>
+            </div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" data-width="70"></div>
+            </div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-header">
+              <span>MySQL</span>
+              <span>80%</span>
+            </div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" data-width="80"></div>
+            </div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-header">
+              <span>HTML / CSS</span>
+              <span>90%</span>
+            </div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" data-width="90"></div>
+            </div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-header">
+              <span>Laravel</span>
+              <span>70%</span>
+            </div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" data-width="70"></div>
+            </div>
+          </div>
+        </div>
+        <!-- Tech Stack Grid -->
+        <div class="tech-grid">
+          <a href="https://php.net" target="_blank" class="tech-card">
+            <span class="tech-icon">🐘</span>
+            <span class="tech-name">PHP</span>
+          </a>
+          <a href="https://python.org" target="_blank" class="tech-card">
+            <span class="tech-icon">🐍</span>
+            <span class="tech-name">Python</span>
+          </a>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" class="tech-card">
+            <span class="tech-icon">🟨</span>
+            <span class="tech-name">JavaScript</span>
+          </a>
+          <a href="https://mysql.com" target="_blank" class="tech-card">
+            <span class="tech-icon">🐬</span>
+            <span class="tech-name">MySQL</span>
+          </a>
+          <a href="https://laravel.com" target="_blank" class="tech-card">
+            <span class="tech-icon">🔴</span>
+            <span class="tech-name">Laravel</span>
+          </a>
+          <a href="https://getbootstrap.com" target="_blank" class="tech-card">
+            <span class="tech-icon">🅱️</span>
+            <span class="tech-name">Bootstrap</span>
+          </a>
+          <a href="https://git-scm.com" target="_blank" class="tech-card">
+            <span class="tech-icon">🐙</span>
+            <span class="tech-name">Git</span>
+          </a>
+          <a href="https://linux.org" target="_blank" class="tech-card">
+            <span class="tech-icon">🐧</span>
+            <span class="tech-name">Linux</span>
+          </a>
+          <a href="https://docker.com" target="_blank" class="tech-card">
+            <span class="tech-icon">📦</span>
+            <span class="tech-name">Docker</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== PROJECTS SECTION ====== -->
+  <section class="projects section-reveal" id="projects">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">// PORTFOLIO</span>
+        <h2 class="section-title">Projects Terbaru</h2>
+        <p class="section-subtitle">Beberapa proyek terbaik yang pernah saya bangun.</p>
+      </div>
+
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="webapp">Web App</button>
+        <button class="filter-btn" data-filter="tool">Tool</button>
+        <button class="filter-btn" data-filter="database">Database</button>
+      </div>
+
+      <div class="projects-grid" id="projectsGrid">
+        <!-- Project 1 -->
+        <div class="project-card" data-category="webapp">
+          <div class="project-thumb">
+            <img src="assets/project1.webp" alt="KasWarga" id="project1Img" />
+            <div class="project-overlay">
+              <a href="javascript:void(0)" onclick="openModal('kaswarga')" class="btn btn-primary magnetic-btn">View
+                Project</a>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">KasWarga API</h3>
+            <p class="project-desc">Sistem manajemen kas rukun tetangga berbasis Laravel.</p>
+            <div class="project-tags">
+              <span class="project-tag">PHP</span>
+              <span class="project-tag">MySQL</span>
+              <span class="project-tag">Bootstrap</span>
+            </div>
+            <div class="project-links">
+              <a href="javascript:void(0)" onclick="openModal('kaswarga')" class="project-link">Lihat Detail →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card" data-category="frontend">
+          <div class="project-thumb">
+            <img src="assets/project2.webp" alt="E-Learning Platform" id="project2Img" />
+            <div class="project-overlay">
+              <a href="javascript:void(0)" onclick="openModal('elearning')" class="btn btn-primary magnetic-btn">View
+                Demo</a>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">E-Learning Dashboard</h3>
+            <p class="project-desc">UI dashboard modern untuk platform pendidikan online.</p>
+            <div class="project-tags">
+              <span class="project-tag">Laravel</span>
+              <span class="project-tag">MySQL</span>
+              <span class="project-tag">JS</span>
+            </div>
+            <div class="project-links">
+              <a href="javascript:void(0)" onclick="openModal('elearning')" class="project-link">Lihat Detail →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card" data-category="python">
+          <div class="project-thumb">
+            <img src="assets/project3.webp" alt="Auto Report Generator" id="project3Img" />
+            <div class="project-overlay">
+              <a href="javascript:void(0)" onclick="openModal('scraper')" class="btn btn-primary magnetic-btn">View
+                Code</a>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">Data Scraper CLI</h3>
+            <p class="project-desc">Script otomatisasi pengambilan data e-commerce.</p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">Pandas</span>
+            </div>
+            <div class="project-links">
+              <a href="javascript:void(0)" onclick="openModal('scraper')" class="project-link">Lihat Detail →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card" data-category="backend">
+          <div class="project-thumb">
+            <img src="assets/project1.webp" alt="Inventory System" />
+            <div class="project-overlay">
+              <a href="javascript:void(0)" onclick="openModal('inventory')" class="btn btn-primary magnetic-btn">View
+                Code</a>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">Inventory REST API</h3>
+            <p class="project-desc">Sistem monitoring stok gudang real-time.</p>
+            <div class="project-tags">
+              <span class="project-tag">PHP</span>
+              <span class="project-tag">MySQL</span>
+              <span class="project-tag">Chart.js</span>
+            </div>
+            <div class="project-links">
+              <a href="javascript:void(0)" onclick="openModal('inventory')" class="project-link">Lihat Detail →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="project-card" data-category="python">
+          <div class="project-thumb">
+            <img src="assets/project2.webp" alt="Web Scraper" />
+            <div class="project-overlay">
+              <a href="javascript:void(0)" onclick="openModal('autoreport')" class="btn btn-primary magnetic-btn">View
+                Demo</a>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">Auto Report Generator</h3>
+            <p class="project-desc">Bot pembuat laporan PDF dari spreadsheet otomatis.</p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">BeautifulSoup</span>
+            </div>
+            <div class="project-links">
+              <a href="javascript:void(0)" onclick="openModal('autoreport')" class="project-link">Lihat Detail →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 6 -->
+        <div class="project-card" data-category="frontend">
+          <div class="project-thumb">
+            <img src="assets/project3.webp" alt="Blog CMS" />
+            <div class="project-overlay">
+              <a href="javascript:void(0)" onclick="openModal('blogcms')" class="btn btn-primary magnetic-btn">View
+                Details</a>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">Headless Blog CMS</h3>
+            <p class="project-desc">Antarmuka website statis menggunakan Nuxt.js.</p>
+            <div class="project-tags">
+              <span class="project-tag">Laravel</span>
+              <span class="project-tag">Vue.js</span>
+              <span class="project-tag">MySQL</span>
+            </div>
+            <div class="project-links">
+              <a href="javascript:void(0)" onclick="openModal('blogcms')" class="project-link">Lihat Detail →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== EXPERIENCE / TIMELINE ====== -->
+  <section class="experience section-reveal" id="experience">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">// PENGALAMAN</span>
+        <h2 class="section-title">Experience & Education</h2>
+        <p class="section-subtitle">Perjalanan saya dalam dunia teknologi dan pendidikan.</p>
+      </div>
+
+      <div class="timeline" id="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-icon">🎓</div>
+            <div class="timeline-org">Politeknik Negeri Batam</div>
+            <div class="timeline-period">2022 – Sekarang</div>
+            <div class="timeline-desc">Mahasiswa Teknik Informatika, aktif dalam berbagai proyek dan organisasi kampus.
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-icon">💻</div>
+            <div class="timeline-org">KasWarga Project</div>
+            <div class="timeline-period">2024</div>
+            <div class="timeline-desc">Full Stack Developer — Membangun aplikasi manajemen kas warga dari awal hingga
+              deployment.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-icon">🏆</div>
+            <div class="timeline-org">PBL Exhibition</div>
+            <div class="timeline-period">2025</div>
+            <div class="timeline-desc">Mengembangkan sistem pameran PBL untuk manajemen karya dan penilaian dosen.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-icon">🚀</div>
+            <div class="timeline-org">Freelance Developer</div>
+            <div class="timeline-period">2025 – Sekarang</div>
+            <div class="timeline-desc">Menerima berbagai proyek freelance web development untuk klien lokal dan
+              internasional.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CONTACT SECTION ====== -->
+  <section class="contact section-reveal" id="contact">
+    <div class="container">
+      <div class="contact-info">
+        <h2 class="contact-heading">Mari Berkolaborasi!</h2>
+        <p class="contact-text">
+          Punya ide proyek menarik? Atau ingin berdiskusi tentang teknologi? Jangan ragu untuk
+          menghubungi saya. Saya selalu terbuka untuk peluang baru dan kolaborasi yang menginspirasi.
+        </p>
+        <div class="contact-items">
+          <a href="mailto:hello@senjai.dev" class="contact-item">
+            <div class="contact-item-icon">📧</div>
+            <div>
+              <div class="contact-item-label">Email</div>
+              <div class="contact-item-text">hello@senjai.dev</div>
+            </div>
+          </a>
+          <a href="#" class="contact-item">
+            <div class="contact-item-icon">💼</div>
+            <div>
+              <div class="contact-item-label">LinkedIn</div>
+              <div class="contact-item-text">linkedin.com/in/senjai</div>
+            </div>
+          </a>
+          <a href="#" class="contact-item">
+            <div class="contact-item-icon">🐙</div>
+            <div>
+              <div class="contact-item-label">GitHub</div>
+              <div class="contact-item-text">github.com/senjaikuyo</div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <form class="contact-form" id="contactForm">
+        <div class="form-group">
+          <input type="text" id="formName" placeholder=" " required />
+          <label for="formName">Nama Lengkap</label>
+        </div>
+        <div class="form-group">
+          <input type="email" id="formEmail" placeholder=" " required />
+          <label for="formEmail">Email</label>
+        </div>
+        <div class="form-group">
+          <input type="text" id="formSubject" placeholder=" " />
+          <label for="formSubject">Subject</label>
+        </div>
+        <div class="form-group">
+          <textarea id="formMessage" placeholder=" " rows="4" required></textarea>
+          <label for="formMessage">Pesan</label>
+        </div>
+        <button type="submit" class="btn-submit magnetic-btn">Kirim Pesan ✉️</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="footer section-reveal" id="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <span>&lt;/&gt;</span> SenJai
+        </div>
+        <nav class="footer-nav">
+          <a href="#hero">Home</a>
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <div class="footer-socials">
+          <a href="#" class="footer-social" title="GitHub">🐙</a>
+          <a href="#" class="footer-social" title="LinkedIn">💼</a>
+          <a href="#" class="footer-social" title="Email">📧</a>
+        </div>
+      </div>
+      <div class="footer-copy">
+        © 2026 SenJai Kuyo — Built with ❤️ & ☕
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <span class="rocket">🚀</span>
+  </button>
+
+  <!-- Main Script -->
+  <script src="script.js"></script>
+  <script src="ai-chat.js"></script>
+</body>
+
+</html>

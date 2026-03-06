@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Me | SenJai Portfolio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="shared.css" />
+</head>
+
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-outer" id="cursorOuter"></div>
+    <div class="cursor-inner" id="cursorInner"></div>
+
+    <!-- ====== NAVBAR ====== -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">&lt;/&gt;</span>
+                <span>SenJai</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html#hero" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link active">About</a></li>
+                <li><a href="index.html#skills" class="nav-link">Skills</a></li>
+                <li><a href="index.html#projects" class="nav-link">Projects</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ====== PAGE BANNER ====== -->
+    <header class="page-banner">
+        <div class="container">
+            <h1 class="page-title">Tentang Saya</h1>
+            <p class="page-subtitle">Lebih dekat dengan SenJai Kuyo: Developer, Mahasiswa, dan Tech Enthusiast.</p>
+        </div>
+    </header>
+
+    <!-- ====== DETAIL CONTENT ====== -->
+    <section class="detail-content">
+        <div class="container" style="max-width: 800px;">
+            <a href="index.html#about" class="back-link">← Kembali ke Home</a>
+
+            <div class="project-gallery">
+                <img src="assets/about.webp" alt="SenJai Kuyo" style="width: 100%; display: block;" />
+            </div>
+
+            <div class="detail-text">
+                <p>Halo! Saya <strong>SenJai Kuyo</strong>, seorang mahasiswa tingkat akhir program studi Teknik
+                    Informatika di Politeknik Negeri Batam (Polibatam). Perjalanan saya di dunia IT dimulai dari rasa
+                    penasaran yang mendalam terhadap bagaimana sebuah program dapat mensimulasikan solusi dunia nyata.
+                </p>
+            </div>
+            <div class="detail-text">
+                <p>Fokus utama saya adalah di bidang <strong>Web Development (Full Stack)</strong>. Saya sangat
+                    menikmati merancang arsitektur backend yang solid menggunakan <strong>PHP (Laravel)</strong> dan
+                    <strong>Python</strong>, namun juga menaruh perhatian besar pada detail antarmuka pengguna (UI/UX)
+                    di sisi frontend.</p>
+            </div>
+
+            <div class="project-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Pendidikan</span>
+                    <span class="meta-value">D4 Teknik Informatika, Polibatam (2022-Sekarang)</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Lokasi</span>
+                    <span class="meta-value">Batam, Kepulauan Riau, Indonesia</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Minat Khusus</span>
+                    <span class="meta-value">Data Automation, UI/UX Animations, Clean Architecture</span>
+                </div>
+            </div>
+
+            <h3 style="margin: 40px 0 20px; font-size: 24px;">Filosofi Coding</h3>
+            <div class="detail-text">
+                <p>Saya percaya bahwa kode bukan sekadar baris instruksi untuk mesin, melainkan <strong>komunikasi
+                        antara developer dengan timnya (dan diri mereka di masa depan)</strong>. Oleh karena itu, saya
+                    selalu mengutamakan clean code, modularitas, dan pattern yang mudah di-maintain. Saya berpedoman
+                    pada prinsip <em>"Buat agar berfungsi, buat agar benar, lalu buat agar cepat."</em></p>
+            </div>
+
+            <h3 style="margin: 40px 0 20px; font-size: 24px;">Di Luar Coding</h3>
+            <div class="detail-text">
+                <p>Saat sedang tidak menatap layar IDE, saya sangat menikmati mendengarkan musik lo-fi, mengeksplorasi
+                    desain web eksperimental di Awwwards, atau mempelajari tech stack baru. Saya juga percaya pentingnya
+                    berbagi pengetahuan, dibuktikan dari partisipasi saya dalam berbagai pameran PBL (Project Based
+                    Learning) di kampus.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== FOOTER ====== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-copy">
+                © 2026 SenJai Kuyo — Built with ❤️ & ☕
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script src="ai-chat.js"></script>
+</body>
+
+</html>
