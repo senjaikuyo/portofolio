@@ -4,9 +4,10 @@
 document.addEventListener('DOMContentLoaded', () => {
   // Inject HTML for ARIA Widget
   const aiWidgetHTML = `
+    <div class="ai-backdrop" id="aiBackdrop"></div>
     <div class="ai-widget">
       <button class="ai-toggle" id="aiToggle" aria-label="Open ARIA Assistant">
-        <span class="ai-icon">✦ AI</span>
+        <span class="ai-icon" id="aiToggleIcon">✦ AI</span>
         <div class="ai-badge" id="aiBadge">
           <span class="badge-dot">1</span>
           <span class="badge-tooltip">Hei! Tanya aku sesuatu 👋</span>
@@ -57,8 +58,10 @@ document.addEventListener('DOMContentLoaded', () => {
   document.body.insertAdjacentHTML('beforeend', aiWidgetHTML);
 
   const aiToggle = document.getElementById('aiToggle');
+  const aiToggleIcon = document.getElementById('aiToggleIcon');
   const aiBadge = document.getElementById('aiBadge');
   const aiChatWindow = document.getElementById('aiChatWindow');
+  const aiBackdrop = document.getElementById('aiBackdrop');
   const aiMinimize = document.getElementById('aiMinimize');
   const aiClose = document.getElementById('aiClose');
   const aiMessages = document.getElementById('aiMessages');
@@ -70,9 +73,24 @@ document.addEventListener('DOMContentLoaded', () => {
   let isFirstOpen = true;
 
   // Toggle chat window
+  function toggleChat() {
+    if (aiChatWindow.classList.contains('open')) {
+      closeChat();
+    } else {
+      openChat();
+    }
+  }
+
   function openChat() {
+    aiChatWindow.classList.remove('closing');
     aiChatWindow.classList.add('open');
-    aiBadge.style.display = 'none'; // Hide notification badge permanently once opened
+    aiBackdrop.classList.add('active');
+    aiToggle.classList.add('active');
+    aiToggleIcon.textContent = '✕';
+
+    if (aiBadge.style.display !== 'none') {
+      aiBadge.style.display = 'none'; // Hide notification badge permanently once opened
+    }
 
     if (isFirstOpen) {
       isFirstOpen = false;
@@ -85,12 +103,34 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function closeChat() {
+    // Add closing animation class
     aiChatWindow.classList.remove('open');
+    aiChatWindow.classList.add('closing');
+
+    // Remove backdrop and active toggle
+    aiBackdrop.classList.remove('active');
+    aiToggle.classList.remove('active');
+    aiToggleIcon.textContent = '✦ AI';
+
+    // Cleanup closing class after animation finishes (0.3s)
+    setTimeout(() => {
+      aiChatWindow.classList.remove('closing');
+    }, 300);
   }
 
-  aiToggle.addEventListener('click', openChat);
+  aiToggle.addEventListener('click', toggleChat);
   aiMinimize.addEventListener('click', closeChat);
   aiClose.addEventListener('click', closeChat);
+
+  // Close on Backdrop click
+  aiBackdrop.addEventListener('click', closeChat);
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && aiChatWindow.classList.contains('open')) {
+      closeChat();
+    }
+  });
 
   // Focus input when opened
   aiChatWindow.addEventListener('transitionend', (e) => {

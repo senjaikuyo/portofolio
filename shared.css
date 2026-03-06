@@ -170,6 +170,20 @@
     transform: scale(1.1) translateY(-4px);
 }
 
+.ai-toggle.active {
+  background: #1e293b;
+  transform: rotate(180deg);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.ai-toggle.active::before {
+  display: none; /* remove pulse glow when open */
+}
+
+.ai-toggle.active:hover {
+  transform: rotate(180deg) scale(1.1);
+}
+
 /* Notification Badge */
 .ai-badge {
     position: absolute;
@@ -221,6 +235,23 @@
     pointer-events: none;
 }
 
+/* AI Backdrop Overlay */
+.ai-backdrop {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.3);
+  z-index: 9999; /* just below .ai-widget */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in, visibility 0.3s ease-in;
+}
+
+.ai-backdrop.active {
+  opacity: 1;
+  visibility: visible;
+}
+
 /* Chat Panel */
 .ai-chat-window {
     position: absolute;
@@ -239,7 +270,7 @@
     overflow: hidden;
     opacity: 0;
     pointer-events: none;
-    transform: translateY(20px) scale(0.95);
+    transform: translateY(30px) scale(0.95); /* starts lower */
     transform-origin: bottom right;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -248,6 +279,13 @@
     opacity: 1;
     pointer-events: all;
     transform: translateY(0) scale(1);
+}
+
+.ai-chat-window.closing {
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+  transition: all 0.3s ease-in; /* faster fade out */
+  pointer-events: none;
 }
 
 .ai-header {
