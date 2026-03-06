@@ -394,17 +394,31 @@ document.addEventListener('DOMContentLoaded', () => {
   revealElements.forEach(el => revealObserver.observe(el));
 
   // =====================
+  // INFO CARD STAGGER ANIMATION
+  // =====================
+  const staggerCards = document.querySelectorAll('.fade-up-stagger');
+  const staggerObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        staggerObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  staggerCards.forEach(card => staggerObserver.observe(card));
+
+  // =====================
   // COUNT-UP ANIMATION
   // =====================
-  const statNumbers = document.querySelectorAll('.stat-number[data-target]');
+  const statNumbers = document.querySelectorAll('.stat-target');
   const countObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const el = entry.target;
         const target = parseInt(el.getAttribute('data-target'));
         let current = 0;
-        const increment = target / 40;
-        const suffix = '+';
+        const increment = target / 30; // 30 steps
 
         const counter = setInterval(() => {
           current += increment;
@@ -412,8 +426,8 @@ document.addEventListener('DOMContentLoaded', () => {
             current = target;
             clearInterval(counter);
           }
-          el.textContent = Math.floor(current) + suffix;
-        }, 40);
+          el.textContent = Math.floor(current);
+        }, 50);
 
         countObserver.unobserve(el);
       }
