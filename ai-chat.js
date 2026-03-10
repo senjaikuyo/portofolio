@@ -1,8 +1,8 @@
 /* ===================================
-   ARIA AI CHATBOT LOGIC
+   ARIA AI CHATBOT LOGIC (PRO v2.0)
    =================================== */
 document.addEventListener('DOMContentLoaded', () => {
-  // Inject HTML for ARIA Widget
+  // Inject HTML for ARIA Widget (UI unchanged for consistency)
   const aiWidgetHTML = `
     <div class="ai-backdrop" id="aiBackdrop"></div>
     <div class="ai-widget">
@@ -17,10 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="ai-chat-window" id="aiChatWindow">
         <div class="ai-header">
           <div class="ai-header-left">
-            <div class="ai-avatar">✦</div>
+            <div class="ai-avatar" id="aiAvatar">✦</div>
             <div class="ai-header-text">
               <span class="ai-name">ARIA</span>
-              <span class="ai-subtitle">Online · Portfolio Assistant</span>
+              <span class="ai-subtitle" id="aiStatusText">Online · Portfolio Assistant</span>
             </div>
           </div>
           <div class="ai-header-right">
@@ -29,9 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </div>
         
-        <div class="ai-messages" id="aiMessages">
-          <!-- Welcome message injected via JS -->
-        </div>
+        <div class="ai-messages" id="aiMessages"></div>
         
         <div class="ai-typing" id="aiTyping" style="display: none;">
           <div class="ai-avatar-small">✦</div>
@@ -57,184 +55,184 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.body.insertAdjacentHTML('beforeend', aiWidgetHTML);
 
-  const aiToggle = document.getElementById('aiToggle');
-  const aiToggleIcon = document.getElementById('aiToggleIcon');
-  const aiBadge = document.getElementById('aiBadge');
-  const aiChatWindow = document.getElementById('aiChatWindow');
-  const aiBackdrop = document.getElementById('aiBackdrop');
-  const aiMinimize = document.getElementById('aiMinimize');
-  const aiClose = document.getElementById('aiClose');
-  const aiMessages = document.getElementById('aiMessages');
-  const aiTyping = document.getElementById('aiTyping');
-  const aiQuickReplies = document.getElementById('aiQuickReplies');
-  const aiForm = document.getElementById('aiForm');
-  const aiInput = document.getElementById('aiInput');
+  const aiElements = {
+    toggle: document.getElementById('aiToggle'),
+    toggleIcon: document.getElementById('aiToggleIcon'),
+    badge: document.getElementById('aiBadge'),
+    window: document.getElementById('aiChatWindow'),
+    backdrop: document.getElementById('aiBackdrop'),
+    minimize: document.getElementById('aiMinimize'),
+    close: document.getElementById('aiClose'),
+    messages: document.getElementById('aiMessages'),
+    typing: document.getElementById('aiTyping'),
+    status: document.getElementById('aiStatusText'),
+    avatar: document.getElementById('aiAvatar'),
+    input: document.getElementById('aiInput'),
+    form: document.getElementById('aiForm'),
+    quickReplies: document.getElementById('aiQuickReplies')
+  };
 
   let isFirstOpen = true;
 
-  // Toggle chat window
-  function toggleChat() {
-    if (aiChatWindow.classList.contains('open')) {
-      closeChat();
-    } else {
-      openChat();
-    }
-  }
+  // --- UI HANDLERS ---
+  const toggleChat = () => aiElements.window.classList.contains('open') ? closeChat() : openChat();
 
-  function openChat() {
-    aiChatWindow.classList.remove('closing');
-    aiChatWindow.classList.add('open');
-    aiBackdrop.classList.add('active');
-    aiToggle.classList.add('active');
-    aiToggleIcon.textContent = '✕';
-
-    if (aiBadge.style.display !== 'none') {
-      aiBadge.style.display = 'none'; // Hide notification badge permanently once opened
-    }
+  const openChat = () => {
+    aiElements.window.classList.add('open');
+    aiElements.backdrop.classList.add('active');
+    aiElements.toggle.classList.add('active');
+    aiElements.toggleIcon.textContent = '✕';
+    if (aiElements.badge.style.display !== 'none') aiElements.badge.style.display = 'none';
 
     if (isFirstOpen) {
       isFirstOpen = false;
-      showTypingIndicator();
-      setTimeout(() => {
-        hideTypingIndicator();
-        addMessage("Halo! Saya ARIA, asisten portfolio ini 👋 Kamu bisa tanya tentang project yang dibuat, skill yang dimiliki, cara kontak, atau hal lainnya. Ada yang bisa saya bantu?", 'bot');
-      }, 1000);
+      initialGreet();
     }
-  }
-
-  function closeChat() {
-    // Add closing animation class
-    aiChatWindow.classList.remove('open');
-    aiChatWindow.classList.add('closing');
-
-    // Remove backdrop and active toggle
-    aiBackdrop.classList.remove('active');
-    aiToggle.classList.remove('active');
-    aiToggleIcon.textContent = '✦ AI';
-
-    // Cleanup closing class after animation finishes (0.3s)
-    setTimeout(() => {
-      aiChatWindow.classList.remove('closing');
-    }, 300);
-  }
-
-  aiToggle.addEventListener('click', toggleChat);
-  aiMinimize.addEventListener('click', closeChat);
-  aiClose.addEventListener('click', closeChat);
-
-  // Close on Backdrop click
-  aiBackdrop.addEventListener('click', closeChat);
-
-  // Close on Escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && aiChatWindow.classList.contains('open')) {
-      closeChat();
-    }
-  });
-
-  // Focus input when opened
-  aiChatWindow.addEventListener('transitionend', (e) => {
-    if (e.propertyName === 'transform' && aiChatWindow.classList.contains('open')) {
-      aiInput.focus();
-    }
-  });
-
-  // Basic NLP Regex / Keyword Matching
-  const getBotResponse = (text) => {
-    const lowerText = text.toLowerCase();
-
-    if (lowerText.includes('kaswarga')) {
-      return "Sebuah sistem manajemen keuangan warga RT/RW (built with **PHP & MySQL**). Aplikasi ini punya fitur laporan otomatis dan notifikasi warga. Lengkapnya bisa klik project card **KasWarga** di halaman Home!";
-    }
-    if (lowerText.includes('project') || lowerText.includes('proyek') || lowerText.includes('portofolio')) {
-      return "Tentu! Di portfolio ini ada 6 project utama: **KasWarga**, **E-Learning Platform**, **Data Scraper CLI**, **Inventory REST API**, **Auto Report Generator**, dan **Headless Blog CMS**. Kamu bisa lihat detail semuanya di bagian **Projects**.";
-    }
-    if (lowerText.includes('stack') || lowerText.includes('skill') || lowerText.includes('bisa')) {
-      return "Kemahiran utamanya ada di Full Stack Web Development! 💻 Tech stack prioritasnya adalah **PHP** (khususnya framework **Laravel**), **Python** (untuk otomasi/data), **JavaScript**, **MySQL**, dan **TailwindCSS/Bootstrap**.";
-    }
-    if (lowerText.includes('laravel')) {
-      return "Tentu saja! Ada beberapa project berbasis **Laravel**, seperti pengerjaan API **Headless Blog CMS** dan **E-Learning Platform** yang kompleks. Bisa klik projectnya di halaman utama ya.";
-    }
-    if (lowerText.includes('kontak') || lowerText.includes('hubungi') || lowerText.includes('email') || lowerText.includes('telepon')) {
-      return "Gampang banget! Kamu bisa reach out via email di **hello@senjai.dev**, atau isi saja form kontak di bagian paling bawah halaman Home ya. 📨";
-    }
-    if (lowerText.includes('pengalaman') || lowerText.includes('lama') || lowerText.includes('kerj')) {
-      return "Saya sudah aktif bereksplorasi di web development selama lebih dari **2 tahun** dan saat ini masih berkuliah (D4 Teknik Informatika). Punya pengalaman freelancing dan kolaborasi di project skala kampus/pemerintahan lokal.";
-    }
-
-    // Fallback response for unhandled inputs
-    return "Wah itu di luar portfolioku 😄 tapi coba tanya hal lain seputar skill, pengamalan, atau kontak saja!";
   };
 
-  // Handle Form Submit
-  aiForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const userText = aiInput.value.trim();
-    if (!userText) return;
+  const closeChat = () => {
+    aiElements.window.classList.remove('open');
+    aiElements.window.classList.add('closing');
+    aiElements.backdrop.classList.remove('active');
+    aiElements.toggle.classList.remove('active');
+    aiElements.toggleIcon.textContent = '✦ AI';
+    setTimeout(() => aiElements.window.classList.remove('closing'), 300);
+  };
 
-    aiInput.value = '';
-    processUserMessage(userText);
-  });
-
-  // Handle Quick Replies
-  aiQuickReplies.addEventListener('click', (e) => {
-    if (e.target.classList.contains('qr-btn')) {
-      const type = e.target.getAttribute('data-reply');
-      let text = e.target.textContent;
-
-      // Strip out the emoji for processing clean keyword intent
-      if (type === 'projects') processUserMessage("Coba lihat projects nya dong", "🚀 Lihat Projects");
-      if (type === 'skills') processUserMessage("Apa aja tech stack mu?", "💼 Tech Stack");
-      if (type === 'kontak') processUserMessage("Cara hubunginya gimana?", "📩 Kontak");
-    }
-  });
-
-  function processUserMessage(processText, displayText = null) {
-    addMessage(displayText || processText, 'user');
-    showTypingIndicator();
-
-    // Simulate thinking delay
-    const delayMs = Math.floor(Math.random() * 500) + 1000; // 1s - 1.5s
+  const initialGreet = () => {
+    updateStatus("Membangun konteks...");
+    showTyping();
     setTimeout(() => {
-      hideTypingIndicator();
-      const response = getBotResponse(processText);
+      hideTyping();
+      updateStatus("Online · Assistant");
+      addMessage(`Halo! Saya **${ARIA_KNOWLEDGE.bot_identity.name}**, asisten cerdas portfolio ini. Saya sudah mempelajari seluruh data project dan skill Senja. Mau tanya apa hari ini?`, 'bot');
+    }, 1200);
+  };
+
+  // --- SMART QUERY LOGIC ---
+  const findBestResponse = (query) => {
+    const q = query.toLowerCase().trim();
+    if (!q) return null;
+
+    let bestMatch = { score: 0, content: "" };
+
+    // 1. Check FAQs (Keyword/Phrase Scoring)
+    ARIA_KNOWLEDGE.faqs.forEach(faq => {
+      let score = 0;
+      faq.questions.forEach(keyword => {
+        if (q.includes(keyword)) score += 5;
+        if (q === keyword) score += 10;
+      });
+      if (score > bestMatch.score) {
+        bestMatch = { score, content: faq.answer };
+      }
+    });
+
+    // 2. Check Projects (Deep Search)
+    ARIA_KNOWLEDGE.projects.forEach(p => {
+      let score = 0;
+      if (q.includes(p.id)) score += 15;
+      if (q.includes(p.title.toLowerCase())) score += 10;
+      p.tags.forEach(t => { if (q.includes(t.toLowerCase())) score += 3; });
+      if (q.includes("fitur") || q.includes("bisa apa")) {
+        if (bestMatch.score < score) {
+          const featureList = p.features.map(f => `• ${f}`).join('<br>');
+          bestMatch = {
+            score,
+            content: `Project **${p.title}** adalah ${p.description}<br><br><strong>Fitur Utama:</strong><br>${featureList}<br><br><em>Tech Details: ${p.tech_details}</em>`
+          };
+        }
+      } else if (score > bestMatch.score) {
+        bestMatch = { score, content: `Project **${p.title}** adalah ${p.description} (dibuat pakai **${p.tags.join(', ')}**). Mau tahu fiturnya?` };
+      }
+    });
+
+    // 3. Simple Sentiment / Greeting
+    if (q.includes("halo") || q.includes("hi") || q.includes("pagi") || q.includes("siang") || q.includes("malam")) {
+      if (bestMatch.score < 2) return `Halo! Ada yang bisa saya bantu terkait portfolio Senja?`;
+    }
+
+    if (bestMatch.score < 3) {
+      return "Maaf, saya belum menemukan data spesifik tentang itu di internal portfolio Senja. Coba tanya tentang project tertentu (seperti KasWarga), skill (PHP/Python), atau cara kontak!";
+    }
+
+    return bestMatch.content;
+  };
+
+  // --- MESSAGE PIPELINE ---
+  const processUserMsg = (text, display = null) => {
+    addMessage(display || text, 'user');
+    showTyping();
+
+    // Rotation of status messages to feel "Smart"
+    const statuses = ["Membaca data...", "Mencari konteks...", "Menganalisis query...", "Menyiapkan jawaban..."];
+    let statusIdx = 0;
+    const statusInterval = setInterval(() => {
+      updateStatus(statuses[statusIdx % statuses.length]);
+      statusIdx++;
+    }, 600);
+
+    const delay = Math.max(1000, 500 + text.length * 20); // Dynamic delay based on length
+
+    setTimeout(() => {
+      clearInterval(statusInterval);
+      hideTyping();
+      updateStatus("Online · Assistant");
+      const response = findBestResponse(display || text);
       addMessage(response, 'bot');
-    }, delayMs);
-  }
+    }, delay);
+  };
 
-  function showTypingIndicator() {
-    aiTyping.style.display = 'flex';
-    aiMessages.appendChild(aiTyping); // Move typing to bottom
-    scrollToBottom();
-  }
-
-  function hideTypingIndicator() {
-    aiTyping.style.display = 'none';
-  }
-
-  function addMessage(text, sender) {
+  const addMessage = (text, sender) => {
     const wrapper = document.createElement('div');
     wrapper.className = `ai-msg-wrapper ${sender}`;
 
     const bubble = document.createElement('div');
     bubble.className = 'ai-msg-bubble';
-
-    // Basic Markdown bold to HTML bold transformation and blue color class
     bubble.innerHTML = text.replace(/\*\*(.*?)\*\*/g, '<strong class="text-highlight">$1</strong>');
 
     const time = document.createElement('div');
     time.className = 'ai-msg-time';
-    const now = new Date();
-    time.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    time.textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
     wrapper.appendChild(bubble);
     wrapper.appendChild(time);
-
-    aiMessages.appendChild(wrapper);
+    aiElements.messages.appendChild(wrapper);
     scrollToBottom();
-  }
+  };
 
-  function scrollToBottom() {
-    aiMessages.scrollTop = aiMessages.scrollHeight;
-  }
+  // --- UTILS ---
+  const updateStatus = (text) => aiElements.status.textContent = text;
+  const showTyping = () => { aiElements.typing.style.display = 'flex'; aiElements.messages.appendChild(aiElements.typing); scrollToBottom(); aiElements.avatar.classList.add('thinking'); };
+  const hideTyping = () => { aiElements.typing.style.display = 'none'; aiElements.avatar.classList.remove('thinking'); };
+  const scrollToBottom = () => aiElements.messages.scrollTop = aiElements.messages.scrollHeight;
+
+  // --- LISTENERS ---
+  aiElements.toggle.addEventListener('click', toggleChat);
+  aiElements.minimize.addEventListener('click', closeChat);
+  aiElements.close.addEventListener('click', closeChat);
+  aiElements.backdrop.addEventListener('click', closeChat);
+  document.addEventListener('keydown', (e) => e.key === 'Escape' && aiElements.window.classList.contains('open') && closeChat());
+
+  aiElements.form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const val = aiElements.input.value.trim();
+    if (!val) return;
+    aiElements.input.value = '';
+    processUserMsg(val);
+  });
+
+  aiElements.quickReplies.addEventListener('click', (e) => {
+    if (e.target.classList.contains('qr-btn')) {
+      const type = e.target.getAttribute('data-reply');
+      if (type === 'projects') processUserMsg("Apa saja proyek terbaru Senja?", "🚀 Lihat Projects");
+      if (type === 'skills') processUserMsg("Sebutkan skill dan tech stack-nya", "💼 Tech Stack");
+      if (type === 'kontak') processUserMsg("Bagaimana cara menghubungi Senja?", "📩 Kontak");
+    }
+  });
+
+  // Focus input when window opens
+  aiElements.window.addEventListener('transitionend', (e) => {
+    if (e.propertyName === 'transform' && aiElements.window.classList.contains('open')) aiElements.input.focus();
+  });
 });
